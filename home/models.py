@@ -7,4 +7,5 @@ class Test(models.Model):
 
 class Favorite(models.Model):
   num = models.CharField(max_length=255)
+  # user id ()forie
   cost = models.FloatField(max_length=255)

@@ -3,15 +3,20 @@ from django.http import HttpResponse
 from django.template import loader
 from home.models import Test
 from twstock import BestFourPoint
+import requests
 #import yfinance as yf
 import random
 import json
-
+import time
 import twstock 
 #更新 TPEX 跟 TWSE 的列表
 from twstock import Stock
 twstock.__update_codes()
 # Create your views here.
+requests.adapters.DEFAULT_RETRIES = 10
+s = requests.session()
+s.keep_alive = False
+# s.get('http://www.twse.com.tw')
 def search(request):
     if request.method == "POST":
         try:
@@ -31,8 +36,13 @@ def search(request):
         
 def stockInfo(request, num):
     test1 = Test.objects.get(num=num)
+    #stock = Stock(num)
+    #stock_price = Stock(num).price
+    #cost = (stock_price.price)[-1]
     stockdetails = twstock.codes[num]
+    time.sleep(2)
     stockrealtime = twstock.realtime.get(num)
+    time.sleep(2)
     bfp = BestFourPoint(Stock(num)) 
     Buy = bfp.best_four_point_to_buy()
     Buy1 = bfp.best_buy_1()
@@ -61,5 +71,7 @@ def stockInfo(request, num):
         'sell3': Sell3,
         'sell4': Sell4,
         'result': Result,
+        # 'cost': stock_price,
+        # 'stock': stock,
     }
     return HttpResponse(template.render(context, request))
