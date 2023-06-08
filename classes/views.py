@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse 
 from django.template import loader
-import twstock 
-twstock.__update_codes()
-from twstock import Stock
+# import twstock 
+# twstock.__update_codes()
+# from twstock import Stock
 
 import pandas as pd
 
@@ -27,7 +27,8 @@ import pandas as pd
 
 
 def stock_industry_search(request, name):
-    df = pd.read_csv("D:/學校/111學年/資料庫/專題/db-final/classes/NewTotalCompany.csv")
+    #df = pd.read_csv("D:/學校/111學年/資料庫/專題/db-final/classes/NewTotalCompany.csv")
+    df = pd.read_csv("classes/NewTotalCompany.csv")
     num_of_stocks = df["product"] == name
     result_csv = df[num_of_stocks]["Num"]
     result = []

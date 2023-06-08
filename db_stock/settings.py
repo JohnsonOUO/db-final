@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "home",
     "stockInfo",
     "classes",
+    "login",
+    "register",
 ]
 
 MIDDLEWARE = [
