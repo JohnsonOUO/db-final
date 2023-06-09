@@ -21,5 +21,7 @@ urlpatterns = [
     path("", include('home.urls')),
     path("", include('stockInfo.urls')),
     path("", include('classes.urls')),
+    path("", include('register.urls')),
+    path("", include('login.urls')),
     path("admin/", admin.site.urls),
 ]

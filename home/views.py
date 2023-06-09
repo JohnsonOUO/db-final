@@ -31,6 +31,7 @@ def home(request):
         'tests': tests,
         'testf': testf,
     }
+    print(request.session['u_name'])
     return HttpResponse(template.render(context, request))
 # def stockInfo(request, num):
 #     test1 = Test.objects.get(num=num)

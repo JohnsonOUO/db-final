@@ -35,7 +35,7 @@ def search(request):
                 pass
         
 def stockInfo(request, num):
-    test1 = Test.objects.get(num=num)
+    #test1 = Test.objects.get(num=num)
     #stock = Stock(num)
     #stock_price = Stock(num).price
     #cost = (stock_price.price)[-1]
@@ -57,7 +57,7 @@ def stockInfo(request, num):
     Result = bfp.best_four_point()
     template = loader.get_template('stockInfo.html')
     context = {
-        'tests1': test1,
+        #'tests1': test1,
         'stockdetails': stockdetails,
         'stockrealtime': stockrealtime,
         'buy': Buy,
