@@ -58,7 +58,7 @@
         </div>
       </nav>
     <div class="center container">
-      <!-- <h1>Welcome</h1>
+      <h1>Welcome</h1>
       <form action='/Search/'method="POST">
         <input
           type="text"
@@ -67,7 +67,7 @@
           placeholder="股票代碼or名稱"
           />
         <button type="submit" class="btn btn-primary">查詢</button>
-      </form> -->
+      </form>
     </div>
     <div class="container text-left">
       <h2>顯示項目</h2>
@@ -82,9 +82,9 @@
         <tbody>
           {% for x in tests%}
           <tr>
-            <td scope="col"><a href="/stockInfo/{{ x.num }}">{{x.num}}</a></th>
+            <td scope="col"><a href="/stockInfo/{{ x.stock_id }}">{{x.num}}</a></th>
             <td scope="col">{{x.cost}}</th>
-            <td scope="col"><a href="add/{{ x.id }}">加入喜愛</a></th>
+            <td scope="col"><a href="add/{{ x.stock_id }}">加入喜愛</a></th>
           </tr>
         {% endfor %}
         </tbody>
@@ -101,11 +101,11 @@
         <tbody>
           {% for y in testf%}
           <tr>
-            <td scope="col"><a href="/stockInfo/{{ y.num }}">{{y.num}}</a></th>
+            <td scope="col"><a href="/stockInfo/{{ y.stock_id }}">{{y.stock_id}}</a></th>
             <td scope="col">{{y.cost}}</th>
-            <td scope="col"><a href="delete/{{ y.id }}">移除喜愛</a></th>
+            <td scope="col"><a href="delete/{{ y.stock_id }}">移除喜愛</a></th>
           </tr>
-        {% endfor %}
+          {% endfor %}
         </tbody>
       </table>
     </div>

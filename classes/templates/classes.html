@@ -105,12 +105,16 @@
                 <h2>{{ product_name}}</h2>
                 <tr>
                 <th scope="col">股票代碼</th>
+                <th scope="col">股票名稱</th>
+                <th scope="col">功能</th>
                 </tr>
             </thead>
             <tbody>
-                {% for i in num_of_stocks%}
+                {% for i, j in num_of_stocks%}
                 <tr>
-                    <td scope="col"><a href="/stockInfo/{{ i }}">{{i}}</a></th>
+                    <td scope="col"><a href="/stockInfo/{{i}}">{{i}}</a></th>
+                    <td scope="col">{{j}}</th>
+                    <td scope="col"><a href="home/add/{{ i }}">加入喜愛</a></th>
                 </tr>
                 {% endfor %}
             </tbody>
