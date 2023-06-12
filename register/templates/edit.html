@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <meta charset = "utf-8">
+    <title>選股神器</title>
+    <style>
+      .center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/home">選股神器</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">首頁</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/classes/半導體業">智慧選股</a>
+              </li>
+
+            </ul>
+            <form action='/Search/'method="POST" class="d-flex" role="search">
+              <input
+                class="form-control me-2" 
+                type="text"
+                name="num"
+                placeholder="Search" 
+                aria-label="Search"
+                />
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+      <h1>更改密碼</h1>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">用戶名稱:</label>
+                <input type="text" class="form-control" name="username" value="" id="username"> <br />
+            </div>
+            <div class="mb-3">
+                <label for="old_password" class="form-label">用戶舊密碼:</label>
+                <input type="password" name="old_password" class="form-control" value="" id="old_password"> <br />
+            </div>
+            <div class="mb-3">
+              <label for="new_password" class="form-label">用戶新密碼:</label>
+              <input type="password" name="new_password" class="form-control" value="" id="new_password"> <br />
+          </div>
+            <input type="submit" class="btn btn-primary" value="確認" />
+        </form>
+        <h1>{{ message }}</h1>
+        <div><a href="/login">前往登入</div>
+    </div>
+  </body>
