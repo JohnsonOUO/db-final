@@ -24,8 +24,6 @@ def home(request):
     #         'tests1': test1,
     #     }
     #     return HttpResponse(template.render(context, request))
-    tests = Test.objects.all().values()
-    testf = Favorite.objects.all().values()
     if 'u_id' in request.session and request.session['u_id'] > 0:
        #有帳號
        favor_list=[]
@@ -38,7 +36,6 @@ def home(request):
           # print(stock.stock_id, stock.stock_name)
           favor_list.append(stock)
        context = {
-            'tests': tests,
             'favor': favor_list,
             'username': user_name,
         }
@@ -46,8 +43,6 @@ def home(request):
        #沒帳號
        template = loader.get_template('home.html')
        context = {
-            'tests': tests,
-            'testf': [],
         }
     # print(request.session['u_id'])
     return HttpResponse(template.render(context, request))
@@ -60,11 +55,20 @@ def home(request):
 #     return HttpResponse(template.render(context, request))
 
 def delete(request, stock_id): #1
-  Favorited = Favorite.objects.get(stock_id=stock_id) #2
-  Favorited.delete() #3
+  if 'u_id' in request.session and request.session['u_id'] > 0:
+    if Favorite.objects.filter(user_id = request.session['u_id'], stock_id = stock_id).exists() == True:
+      Favorited = Favorite.objects.get(user_id = request.session['u_id'], stock_id=stock_id) #2
+      Favorited.delete() #3
   return HttpResponseRedirect(reverse('home')) #4
 
 def add(request,stock_id):
-  AddFavorite = Favorite(user_id=request.session['u_id'], stock_id=stock_id)
-  AddFavorite.save()
-  return HttpResponseRedirect(reverse('home'))
+  if 'u_id' in request.session and request.session['u_id'] > 0:
+    print(request.session['u_id'])
+    print(stock_id)
+    if Favorite.objects.filter(user_id = request.session['u_id'], stock_id = stock_id).exists() == False:
+      print("加入")
+      AddFavorite = Favorite(user_id=request.session['u_id'], stock_id=stock_id)
+      AddFavorite.save()
+    return HttpResponseRedirect(reverse('home'))
+  else:
+    return HttpResponseRedirect(reverse('home'))
