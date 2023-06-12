@@ -59,16 +59,22 @@ def edit(request):
                 template = loader.get_template('edit.html')
                 message='密碼更改成功'
                 context = {
-                        'message': message,
+                    'username': request.session['u_name'],
+                    'message': message,
                 }
                 return HttpResponse(template.render(context, request))
             else:
                 template = loader.get_template('edit.html')
                 message='舊密碼輸入錯誤'
+                context = {
+                    'username': request.session['u_name'],
+                    'message': message,
+                }
                 return HttpResponse(template.render(context, request))
     else:
-        request.session['u_id'] = -1
         template = loader.get_template('edit.html')
+        print(request.session['u_name'])
         context = {
+            'username': request.session['u_name'],
         }
         return HttpResponse(template.render(context, request))
