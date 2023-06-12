@@ -45,3 +45,8 @@ def login(request):
         context = {
         }
         return HttpResponse(template.render(context, request))
+    
+def logout(request):
+    request.session['u_id']=-1
+    request.session['u_name']=""
+    return HttpResponseRedirect(reverse('home'))
