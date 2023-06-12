@@ -34,7 +34,9 @@ def search(request):
             var = '/stockInfo/'+query
             print(var)
             print(type(var))
-            return HttpResponseRedirect(reverse('stockInfo'), args={query})
+            #url = reverse('stockInfo', kwargs={'num': query})#args=(str(self.id),)
+            url = reverse('stockInfo', args=(str(query),))
+            return HttpResponseRedirect(url)
                 #return HttpResponse(template.render(context, request))
         # except Exception:
         #         print("Error")
