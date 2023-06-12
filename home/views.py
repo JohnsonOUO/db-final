@@ -45,7 +45,7 @@ def home(request):
        template = loader.get_template('home.html')
        context = {
             'tests': tests,
-            'testf': testf,
+            'testf': [],
         }
     # print(request.session['u_id'])
     return HttpResponse(template.render(context, request))
