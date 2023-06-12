@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
-from home.models import Test
+from home.models import *
+from django.urls import reverse
 from twstock import BestFourPoint
 import requests
 #import yfinance as yf
@@ -19,20 +20,25 @@ s.keep_alive = False
 # s.get('http://www.twse.com.tw')
 def search(request):
     if request.method == "POST":
-        try:
-            query_info = request.POST
-            query = query_info['num']
-            if query is not None:
-                print(query)
-                test1 = Test.objects.get(num=query)
-                template = loader.get_template('stockInfo.html')
-                print("work")
-                context = {
-                    'tests1': test1,
-                }
-                return HttpResponse(template.render(context, request))
-        except Exception:
-                pass
+        # try:
+        query_info = request.POST
+        query = query_info['num']
+        if query is not None:
+            print(query)
+            test1 = stock_info.objects.get(stock_id=query)
+            template = loader.get_template('stockInfo.html')
+            print("work")
+            context = {
+                'tests1': test1,
+            }
+            var = '/stockInfo/'+query
+            print(var)
+            print(type(var))
+            return HttpResponseRedirect(reverse('stockInfo'), args={query})
+                #return HttpResponse(template.render(context, request))
+        # except Exception:
+        #         print("Error")
+        #         pass
         
 def stockInfo(request, num):
     #test1 = Test.objects.get(num=num)
