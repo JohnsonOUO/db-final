@@ -26,6 +26,7 @@ def login(request):
             else:
                 print(user[0].password)
                 if user[0].password==password:
+                    request.session['u_id']=user[0].user_id
                     request.session['u_name']=user[0].username
                     print(request.session['u_name'])
                     return HttpResponseRedirect(reverse('home'))

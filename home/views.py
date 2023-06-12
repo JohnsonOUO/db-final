@@ -26,12 +26,21 @@ def home(request):
     #     return HttpResponse(template.render(context, request))
     tests = Test.objects.all().values()
     testf = Favorite.objects.all().values()
-    template = loader.get_template('home.html')
-    context = {
-        'tests': tests,
-        'testf': testf,
-    }
-    # print(request.session['u_name'])
+    if 'u_id' in request.session and request.session['u_id'] > 0:
+       template = loader.get_template('home_login.html')
+       user_name =  request.session['u_name']
+       context = {
+            'tests': tests,
+            'testf': testf,
+            'username': user_name,
+        }
+    else:
+       template = loader.get_template('home.html')
+       context = {
+            'tests': tests,
+            'testf': testf,
+        }
+    print(request.session['u_id'])
     return HttpResponse(template.render(context, request))
 # def stockInfo(request, num):
 #     test1 = Test.objects.get(num=num)
