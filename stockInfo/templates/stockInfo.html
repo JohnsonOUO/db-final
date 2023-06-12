@@ -18,10 +18,7 @@
                 <a class="nav-link active" aria-current="page" href="/home">首頁</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">智慧選股</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">喜愛項目</a>
+                <a class="nav-link" href="/classes/半導體業">智慧選股</a>
               </li>
             </ul>
             <form action='/Search/'method="POST" class="d-flex" role="search">
@@ -42,6 +39,9 @@
 <p>ID: {{ tests1.id }}</p> -->
 
 <!-- <p>Back to <a href="/home">Home</a></p> -->
+<div>
+  <a class="btn btn-outline-success" href="/home/add/{{stockdetails.code}}" role="button">加入喜愛</a>
+</div>
 <div class="center container">
   <div class="container px-4 text-center">
     <h3>基本面</h3>
