@@ -44,3 +44,31 @@ def register(request):
         context = {
         }
         return HttpResponse(template.render(context, request))
+    
+
+def edit(request):
+    if request.method== "POST":
+        username = request.POST.get('username', '')
+        old_password = request.POST.get('old_password', '')
+        new_password = request.POST.get('new_password', '')
+        if User.objects.filter(username = username).exists() == True:
+            user = User.objects.get(username = username)
+            if user.password == old_password:
+                user.password = new_password
+                user.save()
+                template = loader.get_template('edit.html')
+                message='密碼更改成功'
+                context = {
+                        'message': message,
+                }
+                return HttpResponse(template.render(context, request))
+            else:
+                template = loader.get_template('edit.html')
+                message='舊密碼輸入錯誤'
+                return HttpResponse(template.render(context, request))
+    else:
+        request.session['u_id'] = -1
+        template = loader.get_template('edit.html')
+        context = {
+        }
+        return HttpResponse(template.render(context, request))
