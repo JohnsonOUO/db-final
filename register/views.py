@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from django.contrib import auth
 from login.models import User
+from home.models import Favorite
 
 # Create your views here.
 def register(request):
@@ -27,6 +28,8 @@ def register(request):
                 #print(user[0].password)
                 temp = User(username=username,password=password)
                 temp.save()
+                favor = Favorite(username=username, stock_id='2330')
+                favor.save()
                 message='註冊成功 可由下方登入 !'
                 template = loader.get_template('register.html')
                 context = {
