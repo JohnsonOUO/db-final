@@ -68,31 +68,13 @@
       <a class="btn btn-primary" href="/register/" role="button">註冊</a>
     </div>
     <div class="container text-left">
-      <h2>顯示項目</h2>
-      <table class="table table-hover">
-        <thead class="table-light">
-          <tr>
-            <th scope="col">股票名稱</th>
-            <th scope="col">股票價格</th>
-            <th scope="col">功能</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for x in tests%}
-          <tr>
-            <td scope="col"><a href="/stockInfo/{{ x.stock_id }}">{{x.num}}</a></th>
-            <td scope="col">{{x.cost}}</th>
-            <td scope="col"><a href="add/{{ x.stock_id }}">加入喜愛</a></th>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
       <table class="table table-hover">
         <thead class="table-light">
           <h2>喜愛項目</h2>
           <tr>
+            <th scope="col">股票代碼</th>
             <th scope="col">股票名稱</th>
-            <th scope="col">股票價格</th>
+            <th scope="col">股票產業</th>
             <th scope="col">功能</th>
           </tr>
         </thead>
@@ -100,7 +82,8 @@
           {% for y in testf%}
           <tr>
             <td scope="col"><a href="/stockInfo/{{ y.stock_id }}">{{y.stock_id}}</a></th>
-            <td scope="col">{{y.cost}}</th>
+              <td scope="col">{{y.name}}</th>
+              <td scope="col">{{y.group}}</th>
             <td scope="col"><a href="delete/{{ y.stock_id }}">移除喜愛</a></th>
           </tr>
           {% endfor %}
