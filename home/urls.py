@@ -7,5 +7,5 @@ urlpatterns = [
     #path('/stockInfo/', views.search, name='stockInfo'),
     #path('home/stockInfo/<str:num>', views.stockInfo, name='stockInfo'),
     path('home/delete/<int:stock_id>', views.delete, name='delete'),
-    path('home/add/<int:id>', views.add, name='add'),
+    path('home/add/<int:stock_id>', views.add, name='add'),
 ]

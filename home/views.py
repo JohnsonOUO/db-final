@@ -64,7 +64,7 @@ def delete(request, stock_id): #1
   Favorited.delete() #3
   return HttpResponseRedirect(reverse('home')) #4
 
-def add(request, user_id, stock_id):
-  AddFavorite = Favorite(user_id=user_id, stock_id=stock_id)
+def add(request,stock_id):
+  AddFavorite = Favorite(user_id=request.session['u_id'], stock_id=stock_id)
   AddFavorite.save()
   return HttpResponseRedirect(reverse('home'))
