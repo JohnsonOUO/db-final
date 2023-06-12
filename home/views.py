@@ -27,20 +27,27 @@ def home(request):
     tests = Test.objects.all().values()
     testf = Favorite.objects.all().values()
     if 'u_id' in request.session and request.session['u_id'] > 0:
+       #有帳號
+       favor_list=[]
        template = loader.get_template('home_login.html')
        user_name =  request.session['u_name']
+       user_id = request.session['u_id']
+       favor = Favorite.objects.filter(user_id=user_id)
+       for data in favor:
+          favor_list.append(data.stock_id)
        context = {
             'tests': tests,
-            'testf': testf,
+            'favor': favor_list,
             'username': user_name,
         }
     else:
+       #沒帳號
        template = loader.get_template('home.html')
        context = {
             'tests': tests,
             'testf': testf,
         }
-    print(request.session['u_id'])
+    # print(request.session['u_id'])
     return HttpResponse(template.render(context, request))
 # def stockInfo(request, num):
 #     test1 = Test.objects.get(num=num)
