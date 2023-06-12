@@ -34,7 +34,9 @@ def home(request):
        user_id = request.session['u_id']
        favor = Favorite.objects.filter(user_id=user_id)
        for data in favor:
-          favor_list.append(data.stock_id)
+          stock = stock_info.objects.get(stock_id=data.stock_id)
+          # print(stock.stock_id, stock.stock_name)
+          favor_list.append(stock)
        context = {
             'tests': tests,
             'favor': favor_list,

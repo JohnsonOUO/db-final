@@ -75,10 +75,10 @@
         <tbody>
           {% for y in favor%}
           <tr>
-            <td scope="col"><a href="/stockInfo/{{y}}">{{y}}</a></th>
-            <td scope="col">{{y.name}}</th>
-            <td scope="col">{{y.group}}</th>
-            <td scope="col"><a href="delete/{{y}}">移除喜愛</a></th>
+            <td scope="col"><a href="/stockInfo/{{y.stock_id}}">{{y.stock_id}}</a></th>
+            <td scope="col">{{y.stock_name}}</th>
+            <td scope="col">{{y.industry}}</th>
+            <td scope="col"><a href="delete/{{y.stock_id}}">移除喜愛</a></th>
           </tr>
           {% endfor %}
         </tbody>
