@@ -72,3 +72,7 @@ def add(request,stock_id):
     return HttpResponseRedirect(reverse('home'))
   else:
     return HttpResponseRedirect(reverse('home'))
+  
+def favor_class(request, stock_classname):
+  print("stock")
+  return HttpResponseRedirect(reverse('home'))
