@@ -28,7 +28,7 @@ def home(request):
     if 'u_id' in request.session and request.session['u_id'] > 0:
        #有帳號
       industry = str(request.session['classes'])
-      if('classes' not in request.session or industry == '全部'):
+      if(industry == '全部'):
         favor_list=[]
         template = loader.get_template('home_login.html')
         user_name =  request.session['u_name']
@@ -43,6 +43,21 @@ def home(request):
               'favor': favor_list,
               'username': user_name,
         }
+      elif(industry == '傳統產業'):
+        favor_list=[]
+        template = loader.get_template('home_login.html')
+        user_name =  request.session['u_name']
+        user_id = request.session['u_id']
+        #user = User.objects.get(user_id=user_id)
+        favor = Favorite.objects.filter(user_id_id = user_id)
+        for data in favor:
+            if(data.stock_id.industry == industry):
+              favor_list.append(data.stock_id)
+            # print(stock.stock_id, stock.stock_name)
+        context = {
+              'favor': favor_list,
+              'username': user_name,
+        }
       else:
         favor_list=[]
         template = loader.get_template('home_login.html')
@@ -52,7 +67,7 @@ def home(request):
         favor = Favorite.objects.filter(user_id_id = user_id)
         for data in favor:
             if(data.stock_id.industry == industry):
-              favor_list.append()
+              favor_list.append(data.stock_id)
             # print(stock.stock_id, stock.stock_name)
         context = {
               'favor': favor_list,
@@ -60,6 +75,7 @@ def home(request):
         }
     else:
        #沒帳號
+       request.session['classes'] = "全部"
        template = loader.get_template('home.html')
        context = {
         }
@@ -93,5 +109,6 @@ def add(request,stock_id):
     return HttpResponseRedirect(reverse('home'))
   
 def favor_class(request, stock_classname):
-  print("stock")
+  #print("stock")
+  request.session['classes'] = stock_classname
   return HttpResponseRedirect(reverse('home'))
