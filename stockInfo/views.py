@@ -24,6 +24,12 @@ def search(request):
         query_info = request.POST
         query = query_info['num']
         if query is not None:
+            try:
+                a = int(query)
+            except:
+                return HttpResponseRedirect(reverse('home'))
+            if(a > 9999 or a < 1000):
+                return HttpResponseRedirect(reverse('home'))
             print(query)
             test1 = stock_info.objects.get(stock_id=query)
             template = loader.get_template('stockInfo.html')
