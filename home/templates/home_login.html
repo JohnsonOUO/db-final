@@ -23,6 +23,16 @@
                 "document.getElementById('search').removeAttribute('disabled');",
                 6000)
         });
+        // document.getElementById("elementId").onclick = function () {
+        //       setTimeout(
+        //         "document.getElementById('elementId').setAttribute('disabled', 'disabled');",
+        //         15)
+        //   };
+        // document.getElementById("elementId").addEventListener("click", function () {
+        //     setTimeout(
+        //         "document.getElementById('elementId').removeAttribute('href');",
+        //         6000)
+        // });
     }
     </script>
   </head>
@@ -90,7 +100,8 @@
         <tbody>
           {% for y in favor%}
           <tr>
-            <td scope="col"><a href="/stockInfo/{{y.stock_id}}">{{y.stock_id}}</a></th>
+            <td scope="col"><a id='elementId{{y.stock_id}}' href="/stockInfo/{{y.stock_id}}" onclick="setTimeout(function(){document.getElementById('elementId{{y.stock_id}}').removeAttribute('href');}, 1);">{{y.stock_id}}</a></th>
+              <!-- onclick="setTimeout(function(){document.getElementById('elementId').removeAttribute('href');}, 1);" -->
             <td scope="col">{{y.stock_name}}</th>
             <td scope="col">{{y.industry}}</th>
             <td scope="col"><a href="delete/{{y.stock_id}}">移除喜愛</a></th>

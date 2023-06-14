@@ -123,7 +123,7 @@
             <tbody>
                 {% for i, j in num_of_stocks%}
                 <tr>
-                    <td scope="col"><a id="stocks" href="/stockInfo/{{i}}">{{i}}</a></th>
+                    <td scope="col"><a id="elementId{{i}}" href="/stockInfo/{{i}}" onclick="setTimeout(function(){document.getElementById('elementId{{i}}').removeAttribute('href');}, 1);">{{i}}</a></th>
                     <td scope="col">{{j}}</th>
                     <td scope="col"><a href="/home/add/{{ i }}">加入喜愛</a></th>
                 </tr>
