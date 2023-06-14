@@ -43,6 +43,7 @@ def home(request):
             # print(stock.stock_id, stock.stock_name)
             favor_list.append(stock)
         context = {
+              'classes_name': industry,
               'favor': favor_list,
               'username': user_name,
         }
@@ -58,6 +59,7 @@ def home(request):
               favor_list.append(data.stock_id)
             # print(stock.stock_id, stock.stock_name)
         context = {
+              'classes_name': industry,
               'favor': favor_list,
               'username': user_name,
         }
@@ -73,6 +75,7 @@ def home(request):
               favor_list.append(data.stock_id)
             # print(stock.stock_id, stock.stock_name)
         context = {
+              'classes_name': industry,
               'favor': favor_list,
               'username': user_name,
         }
@@ -114,4 +117,7 @@ def add(request,stock_id):
 def favor_class(request, stock_classname):
   #print("stock")
   request.session['classes'] = stock_classname
+  return HttpResponseRedirect(reverse('home'))
+
+def routehome(request):
   return HttpResponseRedirect(reverse('home'))
