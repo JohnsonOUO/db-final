@@ -9,6 +9,23 @@
         text-align: center;
       }
     </style>
+    <script>
+      window.onload = function () {
+
+      // 點按鈕1將按鈕2與3停用
+      document.getElementById("search").onclick = function () {
+          document.getElementById("search").setAttribute("disabled", "disabled");
+      };
+
+      // 同場加映：3 秒後恢復原狀
+      document.getElementById("search").addEventListener("click", function () {
+          setTimeout(
+              "document.getElementById('search').removeAttribute('disabled');;",
+              6000)
+      });
+
+    }
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
@@ -35,7 +52,7 @@
                 placeholder="Search" 
                 aria-label="Search"
                 />
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button id="search" class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
         </div>
