@@ -31,7 +31,10 @@ def search(request):
             if(a > 9999 or a < 1000):
                 return HttpResponseRedirect(reverse('home'))
             print(query)
-            test1 = stock_info.objects.get(stock_id=query)
+            try:
+                test1 = stock_info.objects.get(stock_id=query)
+            except:
+                return HttpResponseRedirect(reverse('home'))
             template = loader.get_template('stockInfo.html')
             print("work")
             context = {
