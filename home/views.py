@@ -67,9 +67,9 @@ def add(request,stock_id):
   if 'u_id' in request.session and request.session['u_id'] > 0:
     print(request.session['u_id'])
     print(stock_id)
-    if Favorite.objects.filter(user_id = request.session['u_id'], stock_id = stock_id).exists() == False:
+    if Favorite.objects.filter(user_id_id = request.session['u_id'], stock_id_id = stock_id).exists() == False:
       print("加入")
-      AddFavorite = Favorite(user_id=request.session['u_id'], stock_id=stock_id)
+      AddFavorite = Favorite(user_id=User.objects.get(user_id=request.session['u_id']), stock_id=stock_info.objects.get(stock_id=stock_id))
       AddFavorite.save()
     return HttpResponseRedirect(reverse('home'))
   else:
