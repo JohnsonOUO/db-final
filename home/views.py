@@ -27,19 +27,36 @@ def home(request):
     #     return HttpResponse(template.render(context, request))
     if 'u_id' in request.session and request.session['u_id'] > 0:
        #有帳號
-       favor_list=[]
-       template = loader.get_template('home_login.html')
-       user_name =  request.session['u_name']
-       user_id = request.session['u_id']
-       #user = User.objects.get(user_id=user_id)
-       favor = Favorite.objects.filter(user_id_id = user_id)
-       for data in favor:
-          stock = stock_info.objects.get(stock_id=data.stock_id_id)
-          # print(stock.stock_id, stock.stock_name)
-          favor_list.append(stock)
-       context = {
-            'favor': favor_list,
-            'username': user_name,
+      industry = str(request.session['classes'])
+      if('classes' not in request.session or industry == '全部'):
+        favor_list=[]
+        template = loader.get_template('home_login.html')
+        user_name =  request.session['u_name']
+        user_id = request.session['u_id']
+        #user = User.objects.get(user_id=user_id)
+        favor = Favorite.objects.filter(user_id_id = user_id)
+        for data in favor:
+            stock = stock_info.objects.get(stock_id=data.stock_id_id)
+            # print(stock.stock_id, stock.stock_name)
+            favor_list.append(stock)
+        context = {
+              'favor': favor_list,
+              'username': user_name,
+        }
+      else:
+        favor_list=[]
+        template = loader.get_template('home_login.html')
+        user_name =  request.session['u_name']
+        user_id = request.session['u_id']
+        #user = User.objects.get(user_id=user_id)
+        favor = Favorite.objects.filter(user_id_id = user_id)
+        for data in favor:
+            if(data.stock_id.industry == industry):
+              favor_list.append()
+            # print(stock.stock_id, stock.stock_name)
+        context = {
+              'favor': favor_list,
+              'username': user_name,
         }
     else:
        #沒帳號
