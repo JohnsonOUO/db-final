@@ -5,6 +5,9 @@ from django.urls import reverse
 from .models import Test, Favorite, stock_info
 from login.models import User
 
+List_traditon = ['航運業', '鋼鐵工業', '電機機械', '電器電纜', '汽車工業', '化學工業', '油電燃氣業', '生技醫療業', '建材營造業', \
+                 '水泥工業','食品工業','塑膠工業','紡織纖維','貿易百貨業','玻璃陶瓷','造紙工業','橡膠工業','觀光事業','其他業']
+
 def home(request):
     #查詢功能顯示
     # if request.method == "POST":
@@ -51,7 +54,7 @@ def home(request):
         #user = User.objects.get(user_id=user_id)
         favor = Favorite.objects.filter(user_id_id = user_id)
         for data in favor:
-            if(data.stock_id.industry == industry):
+            if(data.stock_id.industry in List_traditon):
               favor_list.append(data.stock_id)
             # print(stock.stock_id, stock.stock_name)
         context = {
