@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import Test, Favorite, stock_info
+from login.models import User
 
 def home(request):
     #查詢功能顯示
@@ -30,9 +31,10 @@ def home(request):
        template = loader.get_template('home_login.html')
        user_name =  request.session['u_name']
        user_id = request.session['u_id']
-       favor = Favorite.objects.filter(user_id=user_id)
+       #user = User.objects.get(user_id=user_id)
+       favor = Favorite.objects.filter(user_id_id = user_id)
        for data in favor:
-          stock = stock_info.objects.get(stock_id=data.stock_id)
+          stock = stock_info.objects.get(stock_id=data.stock_id_id)
           # print(stock.stock_id, stock.stock_name)
           favor_list.append(stock)
        context = {
