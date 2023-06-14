@@ -6,19 +6,16 @@
     <meta charset = "utf-8">
     <script>
       window.onload = function () {
-
-      // 點按鈕1將按鈕2與3停用
-      document.getElementById("search").onclick = function () {
-          document.getElementById("search").setAttribute("disabled", "disabled");
-      };
-
-      // 同場加映：3 秒後恢復原狀
-      document.getElementById("search").addEventListener("click", function () {
-          setTimeout(
-              "document.getElementById('search').removeAttribute('disabled');;",
-              6000)
-      });
-
+        document.getElementById("search").onclick = function () {
+              setTimeout(
+                "document.getElementById('search').setAttribute('disabled', 'disabled');",
+                15)
+          };
+        document.getElementById("search").addEventListener("click", function () {
+            setTimeout(
+                "document.getElementById('search').removeAttribute('disabled');",
+                6000)
+        });
     }
     </script>
 </head>
